@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deepak Kumar — Motion Portfolio</title>
+  <meta name="description" content="Portfolio of Deepak Kumar — interactive, motion-led, responsive single page site."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script defer src="https://kit.fontawesome.com/a2d9b6d3f8.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a1c2d 0%, #132a47 40%, #1f4068 75%, #1a3561 100%);
+  background-attachment: fixed;
+  font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #e6eef6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 32px 24px;
+  background: rgba(18, 35, 58, 0.75);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+section {
+  margin-bottom: 48px;
+}
+
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#6ee7b7; --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.06);
+      --radius:14px; --glow: 0 8px 30px rgba(46, 213, 188, 0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#020617 0%, #071125 60%); color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .container{max-width:1100px;margin:48px auto;padding:32px}
+
+    /* header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:800;color:#042;box-shadow:var(--glow)}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px}
+    nav a:hover{color:white;background:var(--glass)}
+
+    .theme-toggle{background:transparent;border:1px solid var(--glass-border);padding:8px;border-radius:10px;cursor:pointer}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-top:36px}
+    @media (max-width:920px){.hero{grid-template-columns:1fr;}}
+
+    .intro h1{font-size:clamp(28px,5vw,44px);margin:0 0 12px}
+    .type{color:var(--accent);font-weight:700}
+    .tagline{color:var(--muted);margin-bottom:18px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:600}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042;box-shadow:0 10px 30px rgba(96,165,250,0.08)}
+    .btn-ghost{background:transparent;border:1px solid var(--glass-border);color:var(--muted)}
+
+    /* rotating 3D card */
+    .stage{height:420px;display:flex;align-items:center;justify-content:center;perspective:1200px}
+    .card3d{width:320px;height:360px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid var(--glass-border);backdrop-filter: blur(8px);box-shadow:var(--glow);transform-style:preserve-3d;transition:transform 300ms ease}
+    .card-face{position:absolute;inset:16px;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
+    .profile{display:flex;align-items:center;gap:14px}
+    .avatar{width:72px;height:72px;border-radius:12px;flex:none;background:linear-gradient(135deg,#ffd6a5,#a78bfa);display:flex;align-items:center;justify-content:center;color:#042;font-weight:800}
+
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:13px;border:1px solid rgba(255,255,255,0.02)}
+
+    /* projects */
+    section{margin-top:64px}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:920px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.projects-grid{grid-template-columns:1fr}}
+
+    .project{background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.8));border-radius:12px;padding:18px;border:1px solid var(--glass-border);transition:transform 300ms ease, box-shadow 300ms ease;transform-origin:center;cursor:pointer}
+    .project:hover{transform:translateY(-8px) rotateX(4deg);box-shadow:0 30px 50px rgba(2,8,23,0.6)}
+    .project .p-title{font-weight:700;margin-bottom:8px}
+    .project .p-desc{color:var(--muted);font-size:14px}
+
+    /* timeline */
+    .timeline{display:flex;flex-direction:column;gap:18px}
+    .timeline-item{display:flex;gap:16px;align-items:flex-start}
+    .timeline-dot{width:14px;height:14px;border-radius:50%;background:var(--accent);flex:none;margin-top:6px}
+    .timeline-card{background:var(--glass-2);padding:12px;border-radius:12px;border:1px solid var(--glass-border)}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    @media (max-width:920px){.contact-grid{grid-template-columns:1fr}}
+    .input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:inherit}
+    .submit{margin-top:10px}
+
+    /* scroll reveal util */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* cursor particle */
+    .cursor{position:fixed;pointer-events:none;left:0;top:0;width:18px;height:18px;border-radius:999px;transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0.9;border:2px solid rgba(110,231,183,0.9);box-shadow:0 8px 30px rgba(110,231,183,0.06)}
+
+    footer{color:var(--muted);text-align:center;margin:48px 0}
+    .profile-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ffff;
+  box-shadow: 0 0 15px #00ffff80;
+  transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.08);
+}
+
+.leetcard {
+  max-width: 600px; width: 100%; color: #fff; background: rgba(255,255,255,0.04);
+  border-radius: 24px; padding: 32px; box-shadow: 0 10px 48px #1a17408c;
+  font-family: Segoe UI,Roboto,Arial,sans-serif;
+}
+.leetcard-header {
+  font-size: 28px; font-weight: 800; margin-bottom: 20px;
+  background: linear-gradient(45deg,#ffa500,#ff6b6b);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.leetcard-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr));gap: 18px;margin-bottom: 26px; }
+.leetcard-box { background: rgba(255,255,255,0.1); padding: 18px; border-radius: 16px; border: 1.5px solid rgba(255,255,255,0.1) }
+.leetcard-box h3 { margin: 0 0 2px 0; color: #ffb66b; font-size: 14px; font-weight: 700; }
+.leetcard-big { font-size: 32px; font-weight: 800; }
+.leetcard-sub { color: #c7c7c7; font-size: 13px; }
+.leetcard-bar { height: 11px; background: rgba(255,255,255,0.12); border-radius: 999px; overflow: hidden; margin-top: 10px; }
+.leetcard-bar > div { height: 100%; background: linear-gradient(90deg,#00C49F,#FFBB28,#FF4444); width: 0%; transition: width .8s; }
+.leetcard-breakdown { background: rgba(255,255,255,0.07); padding: 18px 18px 10px 18px; border-radius: 14px; margin-top: 8px; }
+.leetcard-breakdown h3 { color: #ffb66b; font-size: 15px; margin: 0 0 13px 0; }
+.leetcard-difficultygrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.difficulty { padding: 13px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 22px; }
+.difficulty.easy { background: linear-gradient(135deg,#2bbf8a,#00C49F); color: #fff; }
+.difficulty.med { background: linear-gradient(135deg,#ffcc66,#ffbb28); color: #111; }
+.difficulty.hard { background: linear-gradient(135deg,#ff6b6b,#ff4444); color: #fff; }
+.difficulty .sub { font-size: 13px; margin-top: 5px; color: #fafafa; font-weight: 400; }
+.difficulty.med .sub { color:#262626; }
+
+.follow-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #f0f2f5;
+  }
+  .social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    transition: transform 0.3s ease;
+  }
+  .social-icon img {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .social-icon:hover {
+    transform: scale(1.15);
+    color: #0077b6;
+  }
+
+  #projects {
+    padding: 40px 20px;
+    background-color: #193036;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  #projects h2 {
+    font-size: 2.5rem;
+    color: #acc8d6;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 900;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .project {
+    background: rgb(249, 251, 251);
+    border-radius: 14px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 20px 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .project:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.15);
+  }
+  .p-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0077b6;
+    margin-bottom: 12px;
+  }
+  .p-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+  }
+  @media (max-width: 600px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0 10px;
+    }
+  }
+</style>
+
+<!-- Script: paste at the bottom of your page or inside your existing script section -->
+<script>
+fetch('https://leetcode-stats.tashif.codes/deepakkr_123')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('leet-total').textContent      = data.totalSolved;
+    document.getElementById('leet-totalq').textContent     = data.totalQuestions;
+    document.getElementById('leet-attempting').textContent = (data.totalQuestions - data.totalSolved);
+    document.getElementById('leet-fetched').textContent    = new Date().toLocaleString();
+    document.getElementById('leet-easy').textContent       = data.easySolved;
+    document.getElementById('leet-easyq').textContent      = data.totalEasy;
+    document.getElementById('leet-medium').textContent     = data.mediumSolved;
+    document.getElementById('leet-mediumq').textContent    = data.totalMedium;
+    document.getElementById('leet-hard').textContent       = data.hardSolved;
+    document.getElementById('leet-hardq').textContent      = data.totalHard;
+    let percent = data.totalQuestions ? Math.round(data.totalSolved / data.totalQuestions * 100) : 0;
+    document.getElementById('leet-bar').style.width        = percent + '%';
+  })
+  .catch(() => {
+    document.getElementById('leet-fetched').textContent    = "Could not load live stats";
+  });
+</script>
+
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="profile-container">
+  <img src="deepak.jpg" class="profile-pic" alt="Deepak Photo">
+
+</div>
+     
+
+
+        <div>
+          <div style="
+  font-weight: 700; 
+  font-size: 24px; 
+  color: #c8986e; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+">
+  Deepak Kumar
+</div>
+<div style="
+ font-weight: 1000;
+  font-size: 16px; 
+  color: #0a9396; 
+  font-style: italic;
+  text-shadow: 1px 1px 3px rgba(10, 147, 150, 0.4);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.8px;
+">
+  Techno Main Saltlake - Kolkata
+</div>
+
+        </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+             <h1>Hi , I'm a <span class="role" id="role"></span></h1>
+
+<script>
+  const roles = [
+    "Web Developer | ",
+    "Java Developer | ",
+    "Data Science Enthusiast | ",
+    "Tech explorel | "
+  ];
+
+  const colors = [
+    "#00ffff", // cyan
+    "#00ff88", // mint
+    "#ffcc00", // yellow
+    "#ff66ff", // pink-violet
+  ];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const roleElement = document.getElementById("role");
+
+  function typeEffect() {
+    const currentRole = roles[roleIndex];
+    const currentColor = colors[roleIndex];
+    roleElement.style.color = currentColor;
+
+    if (isDeleting) {
+      roleElement.textContent = currentRole.substring(0, charIndex--);
+    } else {
+      roleElement.textContent = currentRole.substring(0, charIndex++);
+    }
+
+    let typingSpeed = isDeleting ? 45 : 90;
+
+    if (!isDeleting && charIndex === currentRole.length) {
+      typingSpeed = 1800; // Pause before deleting
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      typingSpeed = 600;
+    }
+
+    setTimeout(typeEffect, typingSpeed);
+  }
+
+  // Start the typing animation
+  typeEffect();
+</script>
+             
+          
+          <p class="tagline reveal">A motivated developer who loves working on Frontend projects and writing efficient code in Java.
+I’m always eager to solve challenging problems and learn new technologies to grow as a developer.</p>
+          
+          <div class="cta reveal">
+            <button class="btn btn-primary" onclick="location.href='#contact'">Hire Me</button>
+            <a class="btn btn-ghost" href="#" download="Deepak_Kumar_Resume.pdf">View Resume</a>
+          </div>
+
+          <div style="margin-top:22px" class="reveal">
+            <strong style="color:var(--muted);font-size:13px">Featured Skills:</strong>
+            <div class="skills" style="margin-top:10px">
+             <style>
+  .chip {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #0077b6, #0f1a1c);
+    box-shadow: 0 4px 6px rgba(0, 116, 217, 0.3);
+    cursor: default;
+    transition: background 0.3s ease, transform 0.2s ease;
+    user-select: none;
+  }
+  .chip:hover {
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 180, 216, 0.5);
+  }
+</style>
+
+<span class="chip">HTML</span>
+<span class="chip">CSS</span>
+<span class="chip">JavaScript</span>
+<span class="chip">Java</span>
+<span class="chip">Python</span>
+<span class="chip">Canvas</span>
+<span class="chip">Data Science</span>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="card3d" id="card3d">
+            <div class="card-face" style="transform:translateZ(20px)">
+              <div class="profile">
+                <div class="avatar">DK</div>
+                <div>
+                  <div style="font-weight:700">Deepak Kumar</div>
+                  <div style="font-size:13px;color:var(--muted)">Frontend & Data</div>
+                </div>
+              </div>
+              <div style="margin-top:6px;color:var(--muted);font-size:14px">I create fast, accessible, and motion-rich web experiences with careful animation and performance tuning.</div>
+              <div style="margin-top:auto">
+                <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Quick Links</div>
+                <div style="display:flex;gap:8px">
+                  <a class="chip" href="#projects">Projects</a>
+                  <a class="chip" href="#contact">Contact</a>
+                </div>
+              </div>
+            </div>
+            <!-- decorative rotating cube built with CSS for 3D feel -->
+            <div style="position:absolute;right:12px;bottom:12px;transform-style:preserve-3d">
+              <div id="cube" style="width:100px;height:100px;transform-style:preserve-3d;transform:rotateX(-18deg) rotateY(28deg)">
+                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#60a5fa,#6ee7b7);border-radius:8px;transform:translateZ(50px);display:flex;align-items:center;justify-content:center;font-weight:800;color:#042">JS</div>
+                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#ffd6a5,#fda4af);border-radius:8px;transform:rotateY(180deg) translateZ(50px);display:flex;align-items:center;justify-content:center;font-weight:800;color:#042">CSS</div>
+                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#a78bfa,#fbcfe8);border-radius:8px;transform:rotateY(90deg) translateZ(50px);display:flex;align-items:center;justify-content:center;font-weight:800;color:#042">HTML</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+     <section id="projects" class="reveal">
+  <h2>Projects</h2>
+  <div class="projects-grid" style="margin-top:16px">
+    <div class="project" data-tilt>
+      <div class="p-title">Interactive Dashboard</div>
+      <div class="p-desc">A realtime data dashboard with interactive visualizations and animated transitions.</div>
+    </div>
+    <div class="project" data-tilt>
+      <div class="p-title">Motion Portfolio</div>
+      <div class="p-desc">This portfolio — motion-led UI with 3D elements and scroll-driven reveals.</div>
+    </div>
+    <div class="project" data-tilt>
+      <div class="p-title">Game UI</div>
+      <div class="p-desc">A small browser game UI with parallax and particle effects.</div>
+    </div>
+    <div class="project" data-tilt>
+      <div class="p-title">E-commerce Mini App</div>
+      <div class="p-desc">Product grid with smooth filtering, cart micro-interactions and animations.</div>
+    </div>
+    <div class="project" data-tilt>
+      <div class="p-title">Image Classifier</div>
+      <div class="p-desc">Python-based image classifier demo with a JS frontend for visualization.</div>
+    </div>
+    <div class="project" data-tilt>
+      <div class="p-title">Open Source Tooling</div>
+      <div class="p-desc">Small CLI & tooling projects for developers.</div>
+    </div>
+  </div>
+</section>
+
+
+      <section id="about" class="reveal">
+        <h2 style="margin-top:28px">About</h2>
+        <div style="display:flex;gap:18px;align-items:flex-start;margin-top:12px">
+          <div style="flex:1">
+            <p style="color:var(--muted)">I’m a frontend developer and data enthusiast focused on building performant, accessible interfaces with a love for motion and information design. I work with vanilla JS, CSS, and modern tooling.</p>
+            <div style="margin-top:18px">
+              <strong>Experience</strong>
+              <div class="timeline" style="margin-top:12px">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-card">
+                    <div style="font-weight:700">Frontend Developer — Freelance</div>
+                    <div style="font-size:13px;color:var(--muted)">Present</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="width:300px">
+            <div style="background:var(--glass);padding:14px;border-radius:12px;border:1px solid var(--glass-border)">
+              <div style="font-weight:700">Contact</div>
+              <div style="color:var(--muted);font-size:13px;margin-top:8px">Email: <a href="mailto:deepak@example.com">deepak199ak@gmail.com</a></div>
+              <div style="color:var(--muted);font-size:13px;margin-top:6px">GitHub: <a href="#">deepakkr_123</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <div class="leetcard">
+  <div class="leetcard-header">🚀 LeetCode Stats — deepakkr_123</div>
+  <div class="leetcard-grid">
+    <div class="leetcard-box">
+      <h3>Total Solved</h3>
+      <div class="leetcard-big" id="leet-total">?</div>
+      <div class="leetcard-sub">out of <span id="leet-totalq">?</span></div>
+      <div class="leetcard-bar"><div id="leet-bar"></div></div>
+    </div>
+    <div class="leetcard-box">
+      <h3>Attempting (approx)</h3>
+      <div class="leetcard-big" id="leet-attempting">?</div>
+      <div class="leetcard-sub">unsolved problems</div>
+    </div>
+    <div class="leetcard-box">
+      <h3>Last fetched</h3>
+      <div class="leetcard-sub" id="leet-fetched"></div>
+    </div>
+  </div>
+  <div class="leetcard-breakdown">
+    <h3>Problem Breakdown</h3>
+    <div class="leetcard-difficultygrid">
+      <div class="difficulty easy">
+        <div id="leet-easy">?</div>
+        <div class="sub">Easy / <span id="leet-easyq">?</span></div>
+      </div>
+      <div class="difficulty med">
+        <div id="leet-medium">?</div>
+        <div class="sub">Medium / <span id="leet-mediumq">?</span></div>
+      </div>
+      <div class="difficulty hard">
+        <div id="leet-hard">?</div>
+        <div class="sub">Hard / <span id="leet-hardq">?</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <h2 style="margin-top:28px">Contact</h2>
+        <div class="contact-grid" style="margin-top:12px">
+          <div>
+            <form id="contactForm" action="https://formspree.io/f/yourformid" method="POST">
+              <input class="input" name="name" placeholder="Your name" required />
+              <div style="height:12px"></div>
+              <input class="input" name="email" type="email" placeholder="Email" required />
+              <div style="height:12px"></div>
+              <textarea class="input" name="message" rows="6" placeholder="Message"></textarea>
+              <button class="btn btn-primary submit" type="submit">Send Message</button>
+            </form>
+          </div>
+          <div style="padding:18px;background:var(--glass-2);border-radius:12px;border:1px solid var(--glass-border)">
+            <h3>Let’s build something</h3>
+            <p style="color:var(--muted)">I’m available for freelance work and collaborations. Tell me about your project and timeline.</p>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <a class="chip" href="#">LinkedIn</a>
+              <a class="chip" href="#">GitHub</a>
+              <a class="chip" href="#">Twitter</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>Made with care · Deepak Kumar · © <span id="year"></span></footer>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <script>
+    // small helpers
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+
+    // reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    },{threshold:0.12});
+    reveals.forEach(r=>io.observe(r));
+
+    // tilt effect for project cards and 3D card pointer rotate
+    const tiltables = document.querySelectorAll('[data-tilt]');
+    tiltables.forEach(el=>{
+      el.addEventListener('pointermove', e=>{
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `rotateX(${(-y*8).toFixed(2)}deg) rotateY(${(x*8).toFixed(2)}deg) translateZ(6px)`;
+      });
+      el.addEventListener('pointerleave', ()=> el.style.transform='');
+    });
+
+    // 3D card follow pointer
+    const card = $('#card3d');
+    document.addEventListener('pointermove', (e)=>{
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+      const dx = e.clientX - cx; const dy = e.clientY - cy;
+      card.style.transform = `rotateX(${(-dy/40).toFixed(2)}deg) rotateY(${(dx/40).toFixed(2)}deg)`;
+    });
+
+    // rotating cube animation
+    let cube = document.getElementById('cube');
+    let ang = 0;
+    setInterval(()=>{ ang+=0.6; cube.style.transform = `rotateX(${ -18 + ang }deg) rotateY(${28 + ang }deg)`; },20);
+
+    // simple cursor
+    const cursor = $('#cursor');
+    document.addEventListener('mousemove', e=>{ cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+
+    // theme toggle (simple swap)
+    const toggle = $('#themeToggle');
+    toggle.addEventListener('click', ()=>{
+      if(document.documentElement.style.getPropertyValue('--bg') === ''){
+        document.documentElement.style.setProperty('--bg','#f8fafc');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--muted','#344054');
+        document.documentElement.style.setProperty('--accent','#7c3aed');
+        document.body.style.background = 'linear-gradient(180deg,#ffffff,#eef2ff)';
+        toggle.textContent = '☀️';
+      } else {
+        document.documentElement.style.removeProperty('--bg');
+        document.documentElement.style.removeProperty('--card');
+        document.documentElement.style.removeProperty('--muted');
+        document.documentElement.style.removeProperty('--accent');
+        document.body.style.background = '';
+        toggle.textContent = '🌙';
+      }
+    });
+
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // simple form submit feedback
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e)=>{
+      // leave default action so user can wire Formspree; show mini interstitial
+      alert('Thanks! The form will submit if action is configured.');
+    });
+
+    // accessibility: reduce motion if user prefers
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduced){
+      document.querySelectorAll('*').forEach(n=>n.style.transitionDuration='0.01ms');
+    }
+  </script>
+  <section class="follow-section">
+  <a href="https://www.instagram.com/a_i_r_007/" target="_blank" class="social-icon" aria-label="Follow on Instagram">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram Logo" />
+    Instagram
+  </a>
+  <a href="https://www.linkedin.com/in/deepak-kumar-417751259/" target="_blank" class="social-icon" aria-label="Connect on LinkedIn">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Logo" />
+    LinkedIn
+  </a>
+  <a href="https://www.facebook.com/yourprofile" target="_blank" class="social-icon" aria-label="Follow on Facebook">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook Logo" />
+    Facebook
+  </a>
+  <a href="https://wa.me/8709487761" target="_blank" class="social-icon" aria-label="Contact on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Logo" />
+    WhatsApp
+  </a>
+</section>
+
+</body>
+</html>
